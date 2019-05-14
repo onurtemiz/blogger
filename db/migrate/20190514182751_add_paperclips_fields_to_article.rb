@@ -1,4 +1,4 @@
-class AddPaperclipFieldsToArticle < ActiveRecord::Migration[5.2]
+class AddPaperclipsFieldsToArticle < ActiveRecord::Migration[5.2]
   def change
     add_column :articles, :image_file_name, :string
     add_column :articles, :image_content_type, :string
