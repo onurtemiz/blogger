@@ -11,18 +11,28 @@
 
   <body>
   <p class="flash"><%= flash.notice %></p>
+  
+  <div id= navcontainer >
+  <%= link_to "Homepage", articles_path, class: "nav"%>
+  <%= link_to "Tags", tags_path, class: "nav"%>
+  <% if logged_in?%>
+  <%= link_to "Create Article", new_article_path, class: "nav"%>
+  <% end %>
+ 
+    <% if logged_in? %>
+    <%= "Logged in as #{current_user.email}" %>
+    <%= link_to "Logout", logout_path, class:'nav', id: 'login'%>
+    <% else %>
+    <%= link_to "Login", login_path, class:'nav', id: 'login'%>
+    <%= link_to "Sign up", new_author_path, class:'nav', id: 'login'%>
+
+    <% end %>
+  </div>
+
   <div id="container">
   <div id='content'>
     <%= yield %>
-    <hr>
-    <h6>
-    <% if logged_in? %>
-    <%= "Logged in as #{current_user.email}" %>
-    <%= link_to "(logout)", logout_path%>
-    <% else %>
-    <%= link_to "(login)", login_path%>
-    <% end %>
-    </h6>
+    
     </div>
     </div>
   </body>

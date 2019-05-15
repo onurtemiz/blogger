@@ -1,13 +1,20 @@
 <h1>All Articles</h1>
 
-<ul id="articles">
+<div id="articles">
   <% @articles.each do |article| %>
-  <li>
+  <div class='article'>
+  <br>
+  <% if article.image.exists? %>
+						  <%= image_tag article.image.url(:thumb), class: "thumbnail" %>
+					  <% end %>
     <%= link_to article.title, article_path(article), class: "article-title" ,id: "article_#{article.id}" %>
-  </li>
+    <br>
+    <div class='body'>
+    <%= article.body.truncate_words(30) %>
+    <br><br>
+    </div>
+  </div>
+  <br>
   <% end %>
-</ul>
-<% if logged_in? %>
-<%= link_to "Create a New Article", new_article_path, class: "new_article"%><br>
-<% end %>
-<%= link_to "See All Tags", tags_path, class: "all_tags"%>
+
+</div>

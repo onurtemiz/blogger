@@ -1,4 +1,6 @@
 <h1><%= @article.title %></h1>
+<p>Posted on: <%= @article.created_at.to_formatted_s(:long) %></p>
+<p><%= @article.view_count %> Views</p>
 
 <p>
 <% if @article.image.exists? %>

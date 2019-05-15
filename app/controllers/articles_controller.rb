@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
   include ArticlesHelper
 
+  @view_count = 0
+
   def index
     @articles = Article.all
   end
@@ -10,6 +12,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @comment = Comment.new
     @comment.article_id = @article_id
+    @article.view_count += 1
+    @article.save
   end
 
   def new
